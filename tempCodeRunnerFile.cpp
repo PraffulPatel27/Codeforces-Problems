@@ -1,50 +1,50 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define fast_read_input_output() ios_base::sync_with_stdio(false); cin.tie(NULL);
 #define ll long long
-#define mod 1000000007
-#define vec vector<int>
-#define vecl vector<long long>
-#define e "\n"
-#define en endl
+#define EL cout<<endl;
+#define IF(i, a, b) for(int i= a; i < b; i++)
+#define DF(i, a, b) for(int i = b; i >= a; i--)
 #define pb push_back
-#define ep emplace_back
-#define ist insert
-#define mp make_pair
-#define forf for (auto i=0; i<n; i++)
-#define fore for (auto ch: s)
+#define pp pop_back
+#define MP make_pair
+#define YS cout<<"YES"
+#define NO cout<<"NO"
+#define Vi vector<int> 
+#define VV vector<vector<int>> 
+#define ff first
+#define ss second
+#define fast ios_base::sync_with_stdio(false), cin.tie(0), cout.tie(0);
+
+
 int main()
 {
-    fast_read_input_output()
+    fast;
     int t;
     cin>>t;
+    while(t--)
+    {
+        int n;  cin>>n;
 
-    while (t--) {
-        int n;
-        cin>>n; 
-
-        vec v(n);
-        forf cin>>v[i];
-
-        char c= 'a';
-        bool flag= false;
-        for (int i=0; i<n; i++) {
-            if (flag==false && v[0]==0) {
-                cout << c ;
-                flag= true;
-                c++;
+        ll A[n] = {0};
+        IF(i, 0, n)
+            cin>>A[i];
+        set<ll> s;
+        ll ans = 0;
+        IF(i, 0, n)
+        {
+            ll x = 1;
+            ll v = A[i];
+            while (true)
+            {
+                if(A[i] > ans && s.find(A[i]) == s.end())
+                    break;
+                A[i] = x*v;
+                x++;
             }
-            else if (v[i] > 0) {
-                cout << 'a';
-            }
-            else if (flag==true && v[i]==0) {
-                cout << c;
-                c++;
-            }
-         }
-
-        cout << e;
+            s.insert(A[i]);
+            ans = A[i];
+        }
+            cout<<A[n-1]<<"\n";
     }
 
-    return 0;
 }
